@@ -13,7 +13,9 @@ const getAllMeals = async (req, res) => {
 const getOneMealByID = async (req, res) => {
   try {
     const id = req.params.id;
-    res.status(200).json({message:`Meal(${id}) has been retrieved from the database.`})
+    res
+      .status(200)
+      .json({ message: `Meal(${id}) has been retrieved from the database.` });
   } catch (error) {
     res
       .status(500)
@@ -21,14 +23,27 @@ const getOneMealByID = async (req, res) => {
   }
 };
 
-const postMeals = async (req,res) => {
+const postMeals = async (req, res) => {
   try {
-    res.status(201).json(req.body)
+    res.status(201).json(req.body);
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error in receiving data", error: error.message });
+      .json({ message: "Error in posting data", error: error.message });
   }
-}
+};
 
-module.exports = { getAllMeals, getOneMealByID,postMeals };
+const updateMealID = async (req, res) => {
+  try {
+    const id = req.params.id;
+    res
+      .status(201)
+      .json({ message: `Meal(${id}) has been updated.`, body: req.body });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error in updating data", error: error.message });
+  }
+};
+
+module.exports = { getAllMeals, getOneMealByID, postMeals, updateMealID };

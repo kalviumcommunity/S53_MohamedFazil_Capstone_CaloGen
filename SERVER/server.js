@@ -5,8 +5,8 @@ const dotenv = require("dotenv").config();
 
 const PORT = process.env.PORT;
 
-app.use(express.json())
-app.use('/meals' , mealRouter)
+app.use(express.json());
+app.use("/meals", mealRouter);
 
 app.get("/", (req, res) => {
   res.send(`Server is running`);
