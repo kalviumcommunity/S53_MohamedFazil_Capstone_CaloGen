@@ -21,4 +21,14 @@ const getOneMealByID = async (req, res) => {
   }
 };
 
-module.exports = { getAllMeals, getOneMealByID };
+const postMeals = async (req,res) => {
+  try {
+    res.status(201).json(req.body)
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error in receiving data", error: error.message });
+  }
+}
+
+module.exports = { getAllMeals, getOneMealByID,postMeals };
