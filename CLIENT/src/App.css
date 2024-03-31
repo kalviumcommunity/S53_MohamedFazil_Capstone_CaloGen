@@ -94,3 +94,35 @@ button {
   background-color: #88be03;
   text-decoration: underline;
 }
+
+.footer-container {
+  box-shadow: 0 3px 30px 5px hsla(0, 0%, 0%, 0.326);
+}
+
+.title {
+  color: #000000;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socials div {
+  margin: 20px;
+}
+
+.socials div > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.socials div > h2 {
+  font-size: 18px;
+}
+.socials div > a > img {
+  height: 40px;
+  width: 40px;
+}
