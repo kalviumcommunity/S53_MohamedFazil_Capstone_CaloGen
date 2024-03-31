@@ -1,15 +1,51 @@
+@font-face {
+  font-family: "franklin";
+  src: url("./assets/fonts/Franklin.ttf");
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 100%);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #56b24d;
+  border-radius: 100px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #88be03;
+}
+
+button {
+  cursor: pointer;
+}
+
+.nav-main-div {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+}
+
 .navbar {
   font-size: 18px;
-  width: 98vw;
+  width: 100vw;
   margin: auto;
-  padding: 1%;
+  padding: 0.2%;
 }
 
 .part1 {
   width: 45%;
-  margin-right: 15%;
+  margin-right: 5%;
 }
 .part2 {
+  margin-left: 15%;
   width: 25%;
 }
 
@@ -20,9 +56,41 @@
 .signinbtn:hover {
   color: #ffffff;
   background-color: #56b24d;
+  transition: all 0.3s;
 }
 
 .signinbtn:active {
   transition: all 0.1s;
   transform: translateY(2px);
+}
+
+.scroll-nav {
+  height: 90px;
+  transition: 0.6s;
+  background-color: #f4fff3;
+  box-shadow: 0 3px 30px 5px hsla(0, 0%, 0%, 0.326);
+}
+
+.scroll-nav > .routes > .navlinks {
+  font-weight: 600;
+}
+
+.home-flex-1,
+.home-flex-2 {
+  padding: 20px;
+}
+
+.home-flex-1 {
+  margin-top: 10%;
+}
+
+.tagline {
+  font-family: franklin;
+  letter-spacing: 1px;
+}
+
+.route-button:hover {
+  transition: all 0.3s;
+  background-color: #88be03;
+  text-decoration: underline;
 }

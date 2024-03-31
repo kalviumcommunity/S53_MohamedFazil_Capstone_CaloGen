@@ -7,9 +7,17 @@ import Routing from "./components/Routing";
 function App() {
   return (
     <div className="relative">
-      <img src={BG} alt="" className="h-screen w-screen fixed z-[-1]" />
-      <Navbar />
-      <Routing />
+      <img
+        src={BG}
+        alt=""
+        className="fixed inset-0 z-[-1] pointer-events-none w-screen h-screen"
+      />
+      <div className="relative z-10">
+        <Navbar />
+        <div>
+          <Routing />
+        </div>
+      </div>
     </div>
   );
 }
