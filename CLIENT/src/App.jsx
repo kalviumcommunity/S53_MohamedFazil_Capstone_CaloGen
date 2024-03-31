@@ -3,6 +3,7 @@ import "./App.css";
 import BG from "./assets/BG.png";
 import Navbar from "./components/Navbar";
 import Routing from "./components/Routing";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <div>
           <Routing />
         </div>
+        <Footer />
       </div>
     </div>
   );
