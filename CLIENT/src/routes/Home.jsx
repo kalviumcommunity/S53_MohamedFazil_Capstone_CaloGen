@@ -67,7 +67,7 @@ const Home = () => {
         </div>
       </div>
       <div className="home-features-container flex justify-center items-center flex-col text-center ">
-        <h1 className="font-bold text-5xl p-3 tracking-wide text-customGreen">
+        <h1 className="font-bold text-5xl p-3 tracking-wide text-[#4b9b44] ">
           Making Meal Plans Personalized for You Has Never Been Easier
         </h1>
         <p className="font-medium text-xl p-3 ">
@@ -79,7 +79,7 @@ const Home = () => {
             return (
               <div
                 key={i}
-                className="flex flex-col items-center justify-center text-center bg-[#73d96a] rounded-[10px] m-2 p-3"
+                className="flex flex-col items-center justify-center text-center bg-[#55ac4d] rounded-[10px] m-2 p-3"
               >
                 <img
                   src={feature.image}
