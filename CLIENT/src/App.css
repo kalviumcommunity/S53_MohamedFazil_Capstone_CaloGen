@@ -3,6 +3,12 @@
   src: url("./assets/fonts/Franklin.ttf");
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -31,11 +37,13 @@ button {
   position: fixed;
   z-index: 1;
   top: 0;
+  width: 100%;
+  /* padding: 10%; */
 }
 
 .navbar {
   font-size: 18px;
-  width: 100vw;
+  width: 100%;
   margin: auto;
   padding: 0.2%;
 }
@@ -68,10 +76,10 @@ button {
   height: 90px;
   transition: 0.6s;
   background-color: #f4fff3;
-  box-shadow: 0 3px 30px 5px hsla(0, 0%, 0%, 0.326);
+  box-shadow: 0 3px 100px 1px hsla(0, 0%, 0%, 0.326);
 }
 
-.scroll-nav > .routes > .navlinks {
+.scroll-nav > .part1 > .navlinks {
   font-weight: 600;
 }
 
@@ -125,4 +133,10 @@ button {
 .socials div > a > img {
   height: 40px;
   width: 40px;
+}
+
+.home-features-container {
+  font-family: "franklin";
+  padding: 1% 4%;
+  margin: 1% 0;
 }
