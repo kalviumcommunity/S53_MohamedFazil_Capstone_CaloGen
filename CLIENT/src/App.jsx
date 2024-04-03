@@ -11,7 +11,7 @@ function App() {
       <img
         src={BG}
         alt=""
-        className="fixed inset-0 z-[-1] pointer-events-none w-screen h-screen"
+        className="fixed inset-0 z-[-1] pointer-events-none w-full h-full"
       />
       <div className="relative z-10">
         <Navbar />
