@@ -79,4 +79,4 @@ With its intuitive interface and comprehensive features, CaloGen aims to empower
 
 ***[Backend Render Link](https://s53-mohamedfazil-capstone-calogen.onrender.com)***
 
-***[Frontend Vercel Link]()***
+***[Frontend Vercel Link](https://calogen-capstone.vercel.app/)***
