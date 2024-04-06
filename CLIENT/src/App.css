@@ -140,3 +140,31 @@ button {
   padding: 1% 4%;
   margin: 1% 0;
 }
+
+.generator-container {
+  box-shadow: 0 3px 20px 1px hsla(0, 0%, 0%, 0.326);
+}
+
+.gen-tagline {
+  letter-spacing: 1px;
+  font-family: "franklin";
+  font-weight: 800;
+}
+
+.gen-formbox {
+  box-shadow: 0 3px 20px 1px hsla(0, 0%, 0%, 0.326);
+  width: 35%;
+}
+
+.gen-formbox h3 {
+  font-family: "Franklin Gothic Book";
+}
+
+.form > input,
+.form > select {
+  padding: 10px;
+  margin: 1%;
+  border: solid 1px hsla(0, 0%, 0%, 0.43);
+  width: 100%;
+  color: #0000006e;
+}
