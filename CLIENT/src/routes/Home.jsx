@@ -56,14 +56,16 @@ const Home = () => {
           </NavLink>
         </div>
         <div className="home-flex-2 h-max">
-          <img
-            src={homeIntroImg}
-            alt=""
-            style={{
-              height: "34.375rem",
-              width: "34.375rem",
-            }}
-          />
+          <NavLink to="/gen">
+            <img
+              src={homeIntroImg}
+              alt=""
+              style={{
+                height: "34.375rem",
+                width: "34.375rem",
+              }}
+            />
+          </NavLink>
         </div>
       </div>
       <div className="home-features-container flex justify-center items-center flex-col text-center ">
