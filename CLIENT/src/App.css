@@ -160,11 +160,41 @@ button {
   font-family: "Franklin Gothic Book";
 }
 
-.form > input,
-.form > select {
-  padding: 10px;
-  margin: 1%;
+.form{
+  margin: 0 3%;
+  padding: 3%;
+}
+
+.form > fieldset {
   border: solid 1px hsla(0, 0%, 0%, 0.43);
   width: 100%;
+  margin: 3%;
+  box-sizing: border-box;
   color: #0000006e;
+  padding: 8px;
+}
+
+.form > fieldset > legend {
+  /* font-family: "franklin"; */
+  font-size: 10px;
+  margin-left: 5px;
+  padding: 0 5px;
+  /* font-style: italic; */
+}
+
+.form > fieldset > input,
+.form > fieldset > select {
+  padding: 2px;
+  height: 100%;
+  width: 100%;
+}
+
+.form > fieldset > input:focus,
+.form > fieldset > select:focus {
+  outline: none;
+}
+
+.form > button{
+  box-shadow: 0 3px 10px -2px hsla(0, 0%, 0%, 0.326);
+  margin: 20px 0 0 0;
 }
