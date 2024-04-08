@@ -160,7 +160,7 @@ button {
   font-family: "Franklin Gothic Book";
 }
 
-.form{
+.form {
   margin: 0 3%;
   padding: 3%;
 }
@@ -194,7 +194,7 @@ button {
   outline: none;
 }
 
-.form > button{
+.form > div > button {
   box-shadow: 0 3px 10px -2px hsla(0, 0%, 0%, 0.326);
   margin: 20px 0 0 0;
 }

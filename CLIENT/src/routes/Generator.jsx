@@ -57,10 +57,10 @@ const Generator = () => {
                 className="w-full"
               />
             </fieldset>
-            <div className="">
+            <div className="flex justify-start items-start w-full">
               <button
                 type="submit"
-                className="m-1 p-2 bg-[#56B24E] text-white rounded-[13px]"
+                className="m-1 p-2 bg-[#56B24E] text-white rounded-[13px] w-[150px]"
               >
                 Generate
               </button>
