@@ -13,18 +13,15 @@
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: hsl(0, 0%, 100%);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #56b24d;
   border-radius: 100px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #88be03;
 }
@@ -38,7 +35,6 @@ button {
   z-index: 1;
   top: 0;
   width: 100%;
-  /* padding: 10%; */
 }
 
 .navbar {
@@ -107,29 +103,6 @@ button {
   box-shadow: 0 3px 30px 5px hsla(0, 0%, 0%, 0.326);
 }
 
-.title {
-  color: #000000;
-}
-
-.socials {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.socials div {
-  margin: 20px;
-}
-
-.socials div > a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.socials div > h2 {
-  font-size: 18px;
-}
 .socials div > a > img {
   height: 40px;
   width: 40px;
@@ -141,28 +114,24 @@ button {
   margin: 1% 0;
 }
 
+.home-features-card {
+  box-shadow: 0 3px 20px 1px hsla(0, 0%, 0%, 0.326);
+}
+
 .generator-container {
   box-shadow: 0 3px 20px 1px hsla(0, 0%, 0%, 0.326);
 }
 
 .gen-tagline {
-  letter-spacing: 1px;
   font-family: "franklin";
-  font-weight: 800;
 }
 
 .gen-formbox {
   box-shadow: 0 3px 20px 1px hsla(0, 0%, 0%, 0.326);
-  width: 35%;
 }
 
 .gen-formbox h3 {
   font-family: "Franklin Gothic Book";
-}
-
-.form {
-  margin: 0 3%;
-  padding: 3%;
 }
 
 .form > fieldset {
@@ -175,7 +144,6 @@ button {
 }
 
 .form > fieldset > legend {
-  /* font-family: "franklin"; */
   font-size: 10px;
   margin-left: 5px;
   padding: 0 5px;
@@ -197,4 +165,29 @@ button {
 .form > div > button {
   box-shadow: 0 3px 10px -2px hsla(0, 0%, 0%, 0.326);
   margin: 20px 0 0 0;
+  font-family: "franklin";
+}
+
+.gen-meal-heading > button,
+.gen-meal-card > button {
+  font-family: "franklin";
+  box-shadow: 0 3px 10px -2px hsla(0, 0%, 0%, 0.326);
+}
+
+.form > div > button:active,
+.gen-meal-heading > button:active,
+.gen-meal-card > button:active{
+  transform: translateY(3px);
+  transition: all 0.2s;
+  box-shadow: 0 1px 5px -2px hsla(0, 0%, 0%, 0.326);
+}
+
+.gen-meal-card {
+  box-shadow: 0 3px 10px -2px hsla(0, 0%, 0%, 0.326);
+}
+
+.gen-meal-card > h1,
+.gen-meal-heading > div > h1,
+.gen-meal-heading > div > h4 {
+  font-family: "franklin";
 }
