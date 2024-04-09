@@ -13,15 +13,18 @@ const Footer = () => {
       </div>
       <div className="footer-flex">
         <div
-          className="title"
+          className="title text-black"
           style={{
             fontSize: "70px",
             fontWeight: "900",
           }}
         ></div>
-        <div className="socials">
-          <div>
-            <a href="https://www.instagram.com/_f4zil_811?igsh=cjZ4aWh5ZXpoZXAz">
+        <div className="socials flex items-center justify-center">
+          <div className="m-[20px]">
+            <a
+              href="https://www.instagram.com/_f4zil_811?igsh=cjZ4aWh5ZXpoZXAz"
+              className="flex items-center justify-center"
+            >
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram-Icon.png/1024px-Instagram-Icon.png"
                 alt="instagram"

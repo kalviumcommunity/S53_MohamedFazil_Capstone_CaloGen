@@ -81,7 +81,7 @@ const Home = () => {
             return (
               <div
                 key={i}
-                className="flex flex-col items-center justify-center text-center bg-[#55ac4d] rounded-[10px] m-2 p-3"
+                className="home-features-card flex flex-col items-center justify-center text-center bg-[#55ac4d] rounded-[10px] m-2 p-3"
               >
                 <img
                   src={feature.image}
