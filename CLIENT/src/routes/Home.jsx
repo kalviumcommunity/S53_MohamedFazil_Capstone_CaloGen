@@ -47,7 +47,7 @@ const Home = () => {
             </h1>
           </div>
           <p className="mb-[40px]">
-            Enjoy Healthy Consumption with CaloGen ... 🥕😁
+            Enjoy Healthy Consumption with CaloGen
           </p>
           <NavLink to="/gen">
             <button className="route-button text-white font-semibold py-[10px] px-[40px] rounded-[10px] bg-[#56b24d]">
