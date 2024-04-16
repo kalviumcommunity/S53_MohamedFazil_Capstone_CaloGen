@@ -14,7 +14,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(0, 0%, 100%);
+  background: hsla(0, 0%, 100%, 0);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -69,7 +69,7 @@ button {
 }
 
 .scroll-nav {
-  height: 90px;
+  height: 75px;
   transition: 0.6s;
   background-color: #f4fff3;
   box-shadow: 0 3px 100px 1px hsla(0, 0%, 0%, 0.326);
@@ -100,7 +100,7 @@ button {
 }
 
 .footer-container {
-  box-shadow: 0 3px 30px 5px hsla(0, 0%, 0%, 0.326);
+  box-shadow: 0 3px 100px -20px hsla(0, 0%, 0%, 0.326);
 }
 
 .socials div > a > img {
@@ -147,7 +147,6 @@ button {
   font-size: 10px;
   margin-left: 5px;
   padding: 0 5px;
-  /* font-style: italic; */
 }
 
 .form > fieldset > input,
@@ -176,18 +175,42 @@ button {
 
 .form > div > button:active,
 .gen-meal-heading > button:active,
-.gen-meal-card > button:active{
+.gen-meal-card > button:active {
   transform: translateY(3px);
   transition: all 0.2s;
   box-shadow: 0 1px 5px -2px hsla(0, 0%, 0%, 0.326);
 }
 
-.gen-meal-card {
+.gen-meal-card,
+.meal-modal-intro,
+.modal-piechart,
+.modal-ingredients,
+.meal-recipe-modal-box {
   box-shadow: 0 3px 10px -2px hsla(0, 0%, 0%, 0.326);
 }
 
 .gen-meal-card > h1,
 .gen-meal-heading > div > h1,
-.gen-meal-heading > div > h4 {
+.gen-meal-heading > div > h4,
+.prep-box,
+.font {
   font-family: "franklin";
+}
+
+.meal-modal-box {
+  box-shadow: 0 10px 70px -2px hsla(0, 0%, 0%, 0.691);
+  transition:
+    opacity 0.4s ease-in,
+    transform 0.2s ease-in;
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.meal-modal-box.open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.meal-model-intro > img {
+  box-shadow: 0 3px 30px 2px hsla(0, 0%, 0%, 0.326);
 }

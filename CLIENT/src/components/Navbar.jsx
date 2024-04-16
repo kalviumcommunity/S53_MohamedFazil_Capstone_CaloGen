@@ -28,8 +28,8 @@ const Navbar = () => {
             src={nav}
             alt=""
             style={{
-              width: "116.8px",
-              height: "92px",
+              width: "86.25px",
+              height: "70px",
             }}
           />
           <div className="navlinks flex justify-evenly items-center">
