@@ -63,7 +63,7 @@ const Home = () => {
         <h1 className="font-bold text-6xl p-3 tracking-wide text-[#4b9b44] ">
           Personalized Meal Plans But Easier
         </h1>
-        <p className="subtext text-lg p-3 text-slate-800">
+        <p className="home-description-text text-lg p-3 text-slate-800">
           We embrace dietary restrictions and ensure that the suggested food is
           meticulously chosen to align with your safety and preferences.
         </p>
@@ -76,7 +76,7 @@ const Home = () => {
               >
                 <img src={feature.image} alt="" className="h-36 w-36" />
                 <h1 className="font-medium text-2xl p-3 ">{feature.name}</h1>
-                <p className="subtext font-light w-[85%] text-center text-slate-800 text-sm">
+                <p className="home-description-text font-light w-[85%] text-center text-slate-800 text-sm">
                   {feature.description}
                 </p>
               </div>

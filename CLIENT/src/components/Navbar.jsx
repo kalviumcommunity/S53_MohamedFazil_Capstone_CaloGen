@@ -23,7 +23,7 @@ const Navbar = () => {
       <div
         className={`navbar ${scroll ? "scroll-nav" : ""} flex justify-evenly items-center`}
       >
-        <div className="routes flex justify- items-center part1">
+        <div className="routes flex justify-center items-center part1">
           <img
             src={nav}
             alt=""

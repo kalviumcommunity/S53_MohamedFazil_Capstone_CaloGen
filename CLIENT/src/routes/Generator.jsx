@@ -306,7 +306,7 @@ const Generator = () => {
           return (
             <div
               key={i}
-              className="gen-meal-card flex flex-col justify-center items-center p-4 m-[2%] rounded-[15px]"
+              className="gen-meal-card flex flex-col justify-center items-center p-4 m-[2%] rounded-[15px] bg-white"
             >
               <img
                 src={meal.img}
