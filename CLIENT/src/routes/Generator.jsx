@@ -8,6 +8,7 @@ const Generator = () => {
   const { register, handleSubmit } = useForm();
 
   const [totalCalories, setTotalCalories] = useState(0);
+  const [mealNum, setMealNum] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalAnimation, setModalAnimation] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState(null);
@@ -22,10 +23,11 @@ const Generator = () => {
   });
 
   const onSubmit = (data) => {
-    const { calories } = data;
+    const { calories, numberOfMeals } = data;
     const total = parseInt(calories);
+    const noMeals = parseInt(numberOfMeals);
     setTotalCalories(total);
-    console.log(data);
+    setMealNum(noMeals);
   };
 
   const handleViewModal = (meal) => {
@@ -53,10 +55,6 @@ const Generator = () => {
     setModalAnimation(false);
     document.body.style.overflow = "unset";
   };
-
-  useEffect(() => {
-    console.log(pieChart);
-  }, [pieChart]);
 
   const mealGrid = [
     {
@@ -300,12 +298,15 @@ const Generator = () => {
           REGENERATE
         </button>
       </div>
-      <div className="generator-meal-grid grid grid-cols-4 w-[80%] mt-[-2%] mb-[2%]">
+      <div
+        className="generator-meal-grid grid w-[85%] mt-[-2%] mb-[2%]"
+        style={{ gridTemplateColumns: `repeat(${mealNum}, 1fr)` }}
+      >
         {mealGrid.map((meal, i) => {
           return (
             <div
               key={i}
-              className="gen-meal-card flex flex-col justify-center items-center p-4 mx-[2%] rounded-[15px]"
+              className="gen-meal-card flex flex-col justify-center items-center p-4 m-[2%] rounded-[15px] bg-white"
             >
               <img
                 src={meal.img}
@@ -384,7 +385,7 @@ const Generator = () => {
                   </div>
                 </div>
               </div>
-              <div className="meal-modal-innerBox-2 flex justify-center items-center w-full my-4 p-1 ">
+              <div className="meal-modal-innerBox-2 flex justify-center items-center w-full my-4 ">
                 <div className="modal-piechart h-[400px] w-[30%] overflow-scroll overflow-x-hidden p-4 rounded-[20px] mr-2">
                   <div className="flex flex-col justify-center items-center">
                     <Pie data={pieChart} />
@@ -422,15 +423,15 @@ const Generator = () => {
               </div>
               <div className="meal-recipe-modal-box p-4 rounded-[20px]">
                 <h1 className="text-center text-3xl font underline">Recipe</h1>
-                <ul className="flex flex-col justify-center items-center p-4">
+                <ol className="flex flex-col justify-center items-center p-4">
                   {selectedMeal.recipe.map((step, j) => {
                     return (
-                      <li key={j} className="list-disc w-[100%] my-2 ">
+                      <li key={j} className="list-decimal w-[100%] my-2 ">
                         {step}
                       </li>
                     );
                   })}
-                </ul>
+                </ol>
               </div>
             </div>
           </div>

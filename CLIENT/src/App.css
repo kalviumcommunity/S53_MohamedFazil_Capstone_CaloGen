@@ -110,12 +110,15 @@ button {
 
 .home-features-container {
   font-family: "franklin";
-  padding: 1% 4%;
-  margin: 1% 0;
+  padding: 0 4%;
 }
 
-.home-features-card {
-  box-shadow: 0 3px 20px 1px hsla(0, 0%, 0%, 0.326);
+.home-description-text {
+  font-family: sans-serif;
+}
+
+.home-features-grid {
+  margin: 50px 0;
 }
 
 .generator-container {
