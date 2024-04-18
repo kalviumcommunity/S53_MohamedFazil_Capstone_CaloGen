@@ -28,7 +28,6 @@ const Generator = () => {
     const noMeals = parseInt(numberOfMeals);
     setTotalCalories(total);
     setMealNum(noMeals);
-    console.log(mealNum);
   };
 
   const handleViewModal = (meal) => {
