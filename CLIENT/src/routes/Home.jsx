@@ -2,7 +2,6 @@ import React from "react";
 import homeIntroImg from "../assets/home-intro-img.png";
 import { NavLink } from "react-router-dom";
 import religionImage from "../assets/religion.png";
-import dietImage from "../assets/diet.png";
 import recipeImage from "../assets/recipes.png";
 import caloriesImage from "../assets/calories.png";
 
@@ -12,25 +11,19 @@ const Home = () => {
       image: caloriesImage,
       name: "Calorie Intake Customization",
       description:
-        "Users can set their daily calorie intake goals within the website. Based on the specified calorie target, the website generates personalised meal suggestions for breakfast, lunch, and dinner.",
-    },
-    {
-      image: dietImage,
-      name: "Dietary Restriction Management",
-      description:
-        "Users can select from a dropdown list of common allergies or dietary restrictions. The website provides meal suggestions that adhere to the chosen restrictions, ensuring a safe and suitable diet plan.",
+        "Users can set daily calorie goals on the website, which generates personalized meal suggestions for breakfast, lunch, and dinner accordingly.",
     },
     {
       image: religionImage,
       name: "Religious Dietary Accommodation",
       description:
-        "Users can specify their religious preferences, and the website incorporates religious dietary restrictions into meal suggestions.Our platform respects diverse cultural practices, prioritizing adherence to religious dietary restrictions while offering a rich variety of culinary experiences.",
+        "Our platform respects diverse religious dietary preferences, ensuring cultural adherence while offering a wide range of culinary experiences.",
     },
     {
       image: recipeImage,
       name: "Meal Preparation Assistance",
       description:
-        "The website offers recipes and cooking instructions for suggested meals, enabling users to prepare their meals at home. For users unable to cook, the website suggests nearby restaurants that serve meals compliant with their dietary needs and calorie goals, leveraging location-based search capabilities.",
+        "The website provides recipes for home cooking and suggests nearby restaurants serving the same meals based on dietary needs.",
     },
   ];
 
@@ -46,9 +39,7 @@ const Home = () => {
               STAY <span className="text-[#56b24d]">HEALTHY</span>
             </h1>
           </div>
-          <p className="mb-[40px]">
-            Enjoy Healthy Consumption with CaloGen
-          </p>
+          <p className="mb-[40px]">Enjoy Healthy Consumption with CaloGen</p>
           <NavLink to="/gen">
             <button className="route-button text-white font-semibold py-[10px] px-[40px] rounded-[10px] bg-[#56b24d]">
               Get Started
@@ -69,29 +60,25 @@ const Home = () => {
         </div>
       </div>
       <div className="home-features-container flex justify-center items-center flex-col text-center ">
-        <h1 className="font-bold text-5xl p-3 tracking-wide text-[#4b9b44] ">
-          Making Meal Plans Personalized for You Has Never Been Easier
+        <h1 className="font-bold text-6xl p-3 tracking-wide text-[#4b9b44] ">
+          Personalized Meal Plans But Easier
         </h1>
-        <p className="font-medium text-xl p-3 ">
+        <p className="subtext text-lg p-3 text-slate-800">
           We embrace dietary restrictions and ensure that the suggested food is
           meticulously chosen to align with your safety and preferences.
         </p>
-        <div className="home-features-grid grid grid-cols-2 w-[80%]">
+        <div className="home-features-grid grid grid-cols-3 w-[90%]">
           {features.map((feature, i) => {
             return (
               <div
                 key={i}
-                className="home-features-card flex flex-col items-center justify-center text-center bg-[#55ac4d] rounded-[10px] m-2 p-3"
+                className="home-features-card flex flex-col items-center justify-center text-center rounded-[10px] m-2 p-3"
               >
-                <img
-                  src={feature.image}
-                  alt=""
-                  className="h-36 w-36 bg-white rounded-[20px] p-1"
-                />
-                <h1 className="font-medium text-2xl p-3 underline text-white">
-                  {feature.name}
-                </h1>
-                <p className=" font-light w-[80%]">{feature.description}</p>
+                <img src={feature.image} alt="" className="h-36 w-36" />
+                <h1 className="font-medium text-2xl p-3 ">{feature.name}</h1>
+                <p className="subtext font-light w-[85%] text-center text-slate-800 text-sm">
+                  {feature.description}
+                </p>
               </div>
             );
           })}
