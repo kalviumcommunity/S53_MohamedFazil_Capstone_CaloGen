@@ -60,9 +60,12 @@ const Navbar = () => {
           >
             About
           </Link>
-          <button className="px-8 py-1 text-customGreen border-3 border-customGreen rounded-3xl font-bold signinbtn hover:underline">
+          <Link
+            to="/signin"
+            className="px-8 py-1 text-customGreen border-3 border-customGreen rounded-3xl font-bold signinbtn hover:underline"
+          >
             Sign In
-          </button>
+          </Link>
         </div>
       </div>
     </div>

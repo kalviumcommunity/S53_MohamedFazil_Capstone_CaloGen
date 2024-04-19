@@ -7,9 +7,9 @@ const {
 } = require("../Controllers/mealControllers");
 const mealRouter = express.Router();
 
-mealRouter.get("/all", getAllMeals);
-mealRouter.get("/one/:id", getOneMealByID);
-mealRouter.post("/post", postMeals);
-mealRouter.put("/put/:id", updateMealID);
+mealRouter.get("/", getAllMeals);
+mealRouter.get("/:id", getOneMealByID);
+mealRouter.post("/", postMeals);
+mealRouter.put("/:id", updateMealID);
 
 module.exports = mealRouter;

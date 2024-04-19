@@ -217,3 +217,7 @@ button {
 .meal-model-intro > img {
   box-shadow: 0 3px 30px 2px hsla(0, 0%, 0%, 0.326);
 }
+
+.dev-banner{
+  display: none;
+}
