@@ -1,0 +1,17 @@
+meta {
+  name: PUT Route Testing (meals endpoint)
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:3020/meals/arg3w535b
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "message": "Hello World!"
+  }
+}

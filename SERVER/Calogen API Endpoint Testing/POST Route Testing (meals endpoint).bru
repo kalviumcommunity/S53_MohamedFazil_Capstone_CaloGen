@@ -1,0 +1,17 @@
+meta {
+  name: POST Route Testing (meals endpoint)
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:3020/meals/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "message": "Hello World!"
+  }
+}

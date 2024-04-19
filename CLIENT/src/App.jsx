@@ -14,11 +14,7 @@ function App() {
         className="fixed inset-0 z-[-1] pointer-events-none w-full h-full"
       />
       <div className="relative z-10">
-        <Navbar />
-        <div>
-          <Routing />
-        </div>
-        <Footer />
+        <Routing />
       </div>
     </div>
   );
