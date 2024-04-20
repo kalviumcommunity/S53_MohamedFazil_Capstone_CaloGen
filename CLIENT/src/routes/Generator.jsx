@@ -85,10 +85,7 @@ const Generator = () => {
         { ingName: "Sausages", ingMeasure: "3 pieces" },
         { ingName: "Eggs", ingMeasure: "2 count" },
         { ingName: "Tomatoes", ingMeasure: "1" },
-        {
-          ingName: "Mushrooms",
-          ingMeasure: "2 pieces (optional)",
-        },
+        { ingName: "Mushrooms", ingMeasure: "2 pieces (optional)" },
         { ingName: "Toast", ingMeasure: "2 slices" },
         { ingName: "Beans ", ingMeasure: "100g" },
       ],
@@ -248,14 +245,6 @@ const Generator = () => {
             className="form flex flex-col justify-center items-center p-[3%] mx-[3%]"
           >
             <fieldset className="rounded-[10px]">
-              <legend>Diet Type</legend>
-              <select {...register("type")} className="w-full text-[#000000] ">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </select>
-            </fieldset>
-            <fieldset className="rounded-[10px]">
               <legend>Calories</legend>
               <input
                 {...register("calories")}
@@ -300,7 +289,7 @@ const Generator = () => {
       </div>
       <div
         className="generator-meal-grid grid w-[85%] mt-[-2%] mb-[2%]"
-        style={{ gridTemplateColumns: `repeat(${mealNum}, 1fr)` }}
+        style={{ gridTemplateColumns: `repeat(${mealNum}  , 1fr)` }}
       >
         {mealGrid.map((meal, i) => {
           return (
@@ -316,7 +305,7 @@ const Generator = () => {
               <h1 className="text-base font-medium tracking-[1px] m-[6px] text-gray-500 underline">
                 {meal.course}
               </h1>
-              <p className="text-xl font-medium tracking-[1px] mb-[8px]">
+              <p className="text-xl font-medium tracking-[1px] mb-[8px] text-center">
                 {meal.mealName}
               </p>
               <div className="nutrients flex flex-col justify-center items-center w-[80%]">
