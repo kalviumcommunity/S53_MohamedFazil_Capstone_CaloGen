@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
-const connectDB = require("./config/connectDB");
+const connectDB = require("./Config/connectDB");
 const cors = require("cors");
 const mealRouter = require("./Routers/mealRouters");
 
@@ -13,8 +13,19 @@ app.use(express.json());
 connectDB()
 app.use("/meals", mealRouter);
 
-app.get("/", (req, res) => {
-  res.send(`Server is running`);
+app.get("/", async (req, res) => {
+  try {
+    // Check if the mongoose connection is ready
+    const isConnected = mongoose.connection.readyState === 1;
+    if (isConnected) {
+      res.send("Database connection status: Connected");
+    } else {
+      res.send("Database connection status: Disconnected");
+    }
+  } catch (error) {
+    console.error("Error checking database connection:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.listen(PORT, () => {
