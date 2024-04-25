@@ -23,7 +23,7 @@ const Home = () => {
       image: recipeImage,
       name: "Meal Preparation Assistance",
       description:
-        "The website provides recipes for home cooking and suggests nearby restaurants serving the same meals based on dietary needs.",
+        "The website provides recipes for home cooking based on dietary needs.",
     },
   ];
 
