@@ -1,8 +1,10 @@
+const MealModel = require("../Models/mealsModel.js");
+
 const getAllMeals = async (req, res) => {
   try {
-    res
-      .status(200)
-      .json({ message: "All meals have been retrieved from the database." });
+    const data = await MealModel.find();
+    console.log("data: ", data);
+    res.status(200).json(data);
   } catch (error) {
     res
       .status(500)
