@@ -8,9 +8,16 @@ const mealRouter = require("./Routers/mealRouters");
 
 const PORT = process.env.PORT;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://calogen-capstone.vercel.app", "http://localhost:5173"],
+    methods: "GET, POST, PUT, DELETE",
+    allowedHeaders: "Content-Type",
+    credentials: true,
+  })
+);
 app.use(express.json());
-connectDB()
+connectDB();
 app.use("/meals", mealRouter);
 
 app.get("/", async (req, res) => {

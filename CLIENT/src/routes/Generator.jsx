@@ -15,6 +15,7 @@ const Generator = () => {
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [mealGrid, setMealGrid] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [pieChart, setPieChart] = useState({
     datasets: [
       {
@@ -33,8 +34,7 @@ const Generator = () => {
     setMealNum(noMeals);
   };
 
-  const handleViewModal = async (meal) => {
-    console.log(meal);
+  const handleViewModal = (meal) => {
     setSelectedMeal(meal);
     const pieChartData = {
       datasets: [
@@ -49,7 +49,6 @@ const Generator = () => {
     setIsModalOpen(true);
     setTimeout(() => {
       setModalAnimation(true);
-      console.log("setSelectedMeal: ", selectedMeal);
     }, 300);
 
     document.body.style.overflow = "hidden";
@@ -66,10 +65,11 @@ const Generator = () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL_}/`);
         setMealGrid(response.data);
-        setIsLoading(false); // Update isLoading state to false
       } catch (error) {
         console.log("error: ", error);
-        setIsLoading(false); // Update isLoading state to false even if there's an error
+        setError("Failed to fetch data. Please try again later.");
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
@@ -135,66 +135,75 @@ const Generator = () => {
           REGENERATE
         </button>
       </div>
-      {isLoading ? (
-        <div className="loading-container">
-          <img
-            src="https://i.pinimg.com/originals/b1/b8/fb/b1b8fbe29e6218d69b23b900d85b6595.gif"
-            alt=""
-          />
-          <p>Loading coffees...</p>
-        </div>
-      ) : (
-        <div
-          className="generator-meal-grid grid w-[85%] mt-[-2%] mb-[2%]"
-          style={{ gridTemplateColumns: `repeat(${mealNum}  , 1fr)` }}
-        >
-          {mealGrid &&
-            mealGrid.map((meal, i) => {
-              return (
-                <div
-                  key={i}
-                  className="gen-meal-card flex flex-col justify-center items-center p-4 m-[2%] rounded-[15px] bg-white"
-                >
-                  <img
-                    src={meal.img}
-                    alt=""
-                    className="w-[230px] h-[180px] rounded-[20px]"
-                  />
-                  <h1 className="text-base font-medium tracking-[1px] m-[6px] text-gray-500 underline">
-                    {meal.course}
-                  </h1>
-                  <p className="text-xl font-medium tracking-[1px] mb-[8px] text-center">
-                    {meal.mealName}
-                  </p>
-                  <div className="nutrients flex flex-col justify-center items-center w-[80%]">
-                    {meal.nutrients.slice(0, 3).map((nutr, j) => {
-                      return (
-                        <div
-                          key={j}
-                          className="flex justify-between items-center w-[100%]"
-                        >
-                          <h4>{nutr.name}</h4>
-                          <h3>{nutr.measure}</h3>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <button
-                    onClick={() => handleViewModal(meal)}
-                    className="mt-4 p-2 bg-[#56B24E] text-white rounded-[13px] w-[100px] tracking-[1px]"
+      <div className="flex items-center justify-center w-full">
+        {error && (
+          <div className="error-message">
+            <p>{error}</p>
+          </div>
+        )}
+        {isLoading ? (
+          <div className="loading-container mb-[2%]">
+            <img
+              src="https://i.pinimg.com/originals/e6/13/21/e613212546d6c27600379a26cd601365.gif"
+              alt=""
+            />
+            <p>Loading Meals...</p>
+          </div>
+        ) : (
+          <div
+            className="generator-meal-grid grid w-[85%] mt-[-2%] mb-[2%]"
+            style={{ gridTemplateColumns: `repeat(${mealNum}  , 1fr)` }}
+          >
+            {mealGrid &&
+              mealGrid.map((meal, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="gen-meal-card flex flex-col justify-center items-center p-4 m-[2%] rounded-[15px] bg-white"
                   >
-                    VIEW
-                  </button>
-                </div>
-              );
-            })}
-        </div>
-      )}
+                    <img
+                      src={meal.img}
+                      alt=""
+                      className="w-[230px] h-[180px] rounded-[20px]"
+                    />
+                    <h1 className="text-base font-medium tracking-[1px] m-[6px] text-gray-500 underline">
+                      {meal.course}
+                    </h1>
+                    <p className="text-xl font-medium tracking-[1px] mb-[8px] text-center">
+                      {meal.mealName}
+                    </p>
+                    <div className="nutrients flex flex-col justify-center items-center w-[80%]">
+                      {meal.nutrients.slice(0, 3).map((nutr, j) => {
+                        return (
+                          <div
+                            key={j}
+                            className="flex justify-between items-center w-[100%]"
+                          >
+                            <h4>{nutr.name}</h4>
+                            <h3>{nutr.measure}</h3>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <button
+                      onClick={() => handleViewModal(meal)}
+                      className="m-1 p-2 bg-[#56B24E] text-white rounded-[13px] w-[100px] tracking-[1px] mt-[20px]"
+                    >
+                      VIEW
+                    </button>
+                  </div>
+                );
+              })}
+          </div>
+        )}
+      </div>
 
       {isModalOpen && selectedMeal && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 flex justify-center items-center z-[2]">
           <div
-            className={`meal-modal-box bg-white p-8 rounded-md w-[90%] h-[95%] ${modalAnimation ? "open" : ""} `}
+            className={`meal-modal-box bg-white p-8 rounded-md w-[90%] h-[95%] ${
+              modalAnimation ? "open" : ""
+            } `}
           >
             <div className="flex justify-between items-center pb-2 border-b-2">
               <button

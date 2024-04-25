@@ -204,8 +204,8 @@ button {
 .meal-modal-box {
   box-shadow: 0 10px 70px -2px hsla(0, 0%, 0%, 0.691);
   transition:
-    opacity 0.4s ease-in,
-    transform 0.2s ease-in;
+  opacity 0.4s ease-in,
+  transform 0.2s ease-in;
   opacity: 0;
   transform: translateY(-50px);
 }
@@ -217,4 +217,19 @@ button {
 
 .meal-model-intro > img {
   box-shadow: 0 3px 30px 2px hsla(0, 0%, 0%, 0.326);
+}
+
+
+.loading-container{
+  font-size: 30px;
+  font-family: "franklin";
+  text-align: center;
+  font-weight: 900;
+}
+
+.loading-container>img{
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  /* border: #56b24d solid 3px; */
 }
