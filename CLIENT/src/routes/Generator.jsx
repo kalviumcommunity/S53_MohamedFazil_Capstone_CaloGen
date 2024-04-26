@@ -61,9 +61,13 @@ const Generator = () => {
   };
 
   useEffect(() => {
+    const abortController = new AbortController(); // Step 2
+
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL_}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL_}`, {
+          signal: abortController.signal, // Step 4
+        });
         setMealGrid(response.data);
       } catch (error) {
         console.log("error: ", error);
@@ -72,7 +76,12 @@ const Generator = () => {
         setIsLoading(false);
       }
     };
+
     fetchData();
+
+    return () => {
+      abortController.abort(); // Step 5
+    };
   }, []);
 
   return (
