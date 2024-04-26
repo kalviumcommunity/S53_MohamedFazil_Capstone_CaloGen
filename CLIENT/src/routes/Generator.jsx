@@ -60,20 +60,20 @@ const Generator = () => {
     document.body.style.overflow = "unset";
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(`${import.meta.env.VITE_API_URL_}`);
-  //       setMealGrid(response.data);
-  //     } catch (error) {
-  //       console.log("error: ", error);
-  //       setError("Failed to fetch data. Please try again later.");
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL_}`);
+        setMealGrid(response.data);
+      } catch (error) {
+        console.log("error: ", error);
+        setError("Failed to fetch data. Please try again later.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="generator-main-div w-full flex flex-col justify-center items-center my-3">
