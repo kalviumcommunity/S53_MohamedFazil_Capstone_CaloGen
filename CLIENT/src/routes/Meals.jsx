@@ -158,7 +158,7 @@ const Meals = () => {
     return filteredMeals; // Return all meals if no filters are applied
   }, [mealGrid, searchQuery, selectedCourse, filterOption]);
 
-  const filteredMeals = filterMeals();
+  const filteredMeals = filterMeals;
 
   return (
     <div className="generator-main-div w-full flex flex-col justify-center items-center my-4">
