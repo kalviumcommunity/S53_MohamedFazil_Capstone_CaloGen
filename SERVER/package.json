@@ -2,7 +2,10 @@
   "name": "s53_calogen",
   "version": "1.0.0",
   "description": "CaloGen is a dynamic online platform that assists users in managing their calorie intake, tracking food consumption, and receiving personalised meal suggestions tailored to their dietary restrictions and goals.",
-  "main": "server.js",
+  "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"

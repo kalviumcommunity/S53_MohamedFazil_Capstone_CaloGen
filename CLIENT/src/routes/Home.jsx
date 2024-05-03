@@ -65,7 +65,7 @@ const Home = () => {
         </h1>
         <p className="home-description-text text-lg p-3 text-slate-800">
           We embrace dietary restrictions and ensure that the suggested food is
-          meticulously chosen to align with your safety and preferences.
+          meticulously chosen to align with your preferences.
         </p>
         <div className="home-features-grid grid grid-cols-3 w-[90%]">
           {features.map((feature, i) => {

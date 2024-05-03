@@ -7,7 +7,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 0;
+      const isScrolled = window.scrollY > 2;
       setScroll(isScrolled);
     };
 
@@ -19,7 +19,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`${scroll ? "nav-main-div" : ""}`}>
+    <div className={`${scroll ? "nav-main-div" : ""} flex items-center justify-center`}>
       <div
         className={`navbar ${scroll ? "scroll-nav" : ""} flex justify-evenly items-center`}
       >
@@ -62,7 +62,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/signin"
-            className="px-8 py-1 text-customGreen border-3 border-customGreen rounded-3xl font-bold signinbtn hover:underline"
+            className="px-8 py-1 text-customGreen border-3 border-customGreen rounded-3xl font-bold signinbtn hover:underline bg-white"
           >
             Sign In
           </Link>
