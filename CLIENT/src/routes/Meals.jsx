@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 import search from "../assets/search.png";
@@ -96,69 +96,72 @@ const Meals = () => {
     setFilterOption("");
   };
 
-  const filterMeals = () => {
-    let filteredMeals = mealGrid.filter((meal) => {
-      const mealNameMatches = meal.mealName
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-      const ingredientMatches = meal.ingredients.some((ingredient) =>
-        ingredient.ingName.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      return mealNameMatches || ingredientMatches;
-    });
-
-    filteredMeals = filteredMeals.filter(
-      (meal) => meal.course === selectedCourse || selectedCourse === ""
-    );
-
-    // Apply additional filters based on the selected option
-    if (filterOption) {
-      const filteredMealsWithParams = filteredMeals.filter((meal) => {
-        const fatNutrient = meal.nutrients.find((nutr) => nutr.name === "Fats");
-        const carbsNutrient = meal.nutrients.find(
-          (nutr) => nutr.name === "Carbs"
+  const filterMeals = useMemo(() => {
+    return () => {
+      let filteredMeals = mealGrid.filter((meal) => {
+        const mealNameMatches = meal.mealName
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+        const ingredientMatches = meal.ingredients.some((ingredient) =>
+          ingredient.ingName.toLowerCase().includes(searchQuery.toLowerCase())
         );
-
-        if (!fatNutrient || !carbsNutrient) return false;
-
-        const fatValue = parseFloat(fatNutrient.measure.replace("g", ""));
-        const carbsValue = parseFloat(carbsNutrient.measure.replace("g", ""));
-
-        if (filterOption === "lowCarbs" && carbsValue < 15) return true;
-        if (filterOption === "highCarbs" && carbsValue > 45) return true;
-        if (
-          filterOption === "moderateCarbs" &&
-          carbsValue >= 15 &&
-          carbsValue <= 45
-        )
-          return true;
-
-        if (filterOption === "lowFat" && fatValue < 3.5) return true;
-        if (filterOption === "highFat" && fatValue > 17.5) return true;
-        if (
-          filterOption === "moderateFat" &&
-          fatValue >= 3.5 &&
-          fatValue <= 17.5
-        )
-          return true;
-
-        if (filterOption === "lowCalories" && meal.calories < 160) return true;
-        if (filterOption === "highCalories" && meal.calories > 300) return true;
-        if (
-          filterOption === "moderateCalories" &&
-          meal.calories >= 160 &&
-          meal.calories <= 300
-        )
-          return true;
-
-        return false;
+        return mealNameMatches || ingredientMatches;
       });
 
-      return filteredMealsWithParams;
-    }
+      filteredMeals = filteredMeals.filter(
+        (meal) => meal.course === selectedCourse || selectedCourse === ""
+      );
 
-    return filteredMeals; // Return all meals if no filters are applied
-  };
+      // Apply additional filters based on the selected option
+      if (filterOption) {
+        const filteredMealsWithParams = filteredMeals.filter((meal) => {
+          const fatNutrient = meal.nutrients.find((nutr) => nutr.name === "Fats");
+          const carbsNutrient = meal.nutrients.find(
+            (nutr) => nutr.name === "Carbs"
+          );
+
+          if (!fatNutrient || !carbsNutrient) return false;
+
+          const fatValue = parseFloat(fatNutrient.measure.replace("g", ""));
+          const carbsValue = parseFloat(carbsNutrient.measure.replace("g", ""));
+
+          if (filterOption === "lowCarbs" && carbsValue < 15) return true;
+          if (filterOption === "highCarbs" && carbsValue > 45) return true;
+          if (
+            filterOption === "moderateCarbs" &&
+            carbsValue >= 15 &&
+            carbsValue <= 45
+          )
+            return true;
+
+          if (filterOption === "lowFat" && fatValue < 3.5) return true;
+          if (filterOption === "highFat" && fatValue > 17.5) return true;
+          if (
+            filterOption === "moderateFat" &&
+            fatValue >= 3.5 &&
+            fatValue <= 17.5
+          )
+            return true;
+
+          if (filterOption === "lowCalories" && meal.calories < 160) return true;
+          if (filterOption === "highCalories" && meal.calories > 300) return true;
+          if (
+            filterOption === "moderateCalories" &&
+            meal.calories >= 160 &&
+            meal.calories <= 300
+          )
+            return true;
+
+          return false;
+        });
+
+        return filteredMealsWithParams;
+      }
+
+      return filteredMeals; // Return all meals if no filters are applied
+    };
+  }, [mealGrid, searchQuery, selectedCourse, filterOption]);
+
   const filteredMeals = filterMeals();
 
   return (
