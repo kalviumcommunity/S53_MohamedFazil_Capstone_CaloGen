@@ -39,7 +39,7 @@ const Generator = () => {
     const pieChartData = {
       datasets: [
         {
-          label: "Percentage:",
+          label: "Percentage",
           data: meal.pie_chart.map((data) => data.value),
         },
       ],
@@ -135,7 +135,7 @@ const Generator = () => {
           </form>
         </div>
       </div>
-      <div className="gen-meal-heading flex justify-between items-center m-[5%] w-3/4">
+      <div className="gen-meal-heading flex justify-between items-center m-[5%] w-[90%]">
         <div>
           <h1 className="text-5xl">GENERATED RESULT</h1>
           <h4 className="m-[1%] ">TOTAL CALORIES: {totalCalories}</h4>
@@ -160,7 +160,7 @@ const Generator = () => {
           </div>
         ) : (
           <div
-            className="generator-meal-grid grid w-[85%] mt-[-2%] mb-[2%]"
+            className="generator-meal-grid grid w-[95%] mt-[-2%] mb-[2%]"
             style={{ gridTemplateColumns: `repeat(${mealNum}  , 1fr)` }}
           >
             {mealGrid &&
@@ -168,7 +168,7 @@ const Generator = () => {
                 return (
                   <div
                     key={i}
-                    className="gen-meal-card flex flex-col justify-center items-center p-4 m-[2%] rounded-[15px] bg-white"
+                    className="gen-meal-card flex flex-col justify-center items-center p-4 m-[2%] rounded-[15px] bg-white border-[3px]"
                   >
                     <img
                       src={meal.img}
@@ -215,15 +215,15 @@ const Generator = () => {
             } `}
           >
             <div className="flex justify-between items-center pb-2 border-b-2">
+              <h2 className="text-4xl font-bold mb-4 text-center flex-1 underline">
+                {selectedMeal && selectedMeal.course}
+              </h2>
               <button
                 onClick={handleCloseModal}
                 className="h-[30px] w-[30px] bg-[#56B24E] text-white rounded-md flex items-center justify-center hover:bg-[#88be03]"
               >
                 &times;
               </button>
-              <h2 className="text-4xl font-bold mb-4 text-center flex-1 underline">
-                {selectedMeal && selectedMeal.course}
-              </h2>
             </div>
             <div className="meal-modal-inner-box h-[90%] overflow-scroll overflow-x-hidden p-2 m-2 ">
               <div className="meal-modal-intro flex justify-between items-center w-full bg-[#56B24E] p-4 rounded-[10px]">

@@ -46,10 +46,10 @@ button {
 
 .part1 {
   width: 45%;
-  margin-right: 5%;
+  margin-left: 3%;
+  margin-right: 30%;
 }
 .part2 {
-  margin-left: 15%;
   width: 25%;
 }
 
@@ -57,20 +57,20 @@ button {
   width: 100%;
 }
 
-.signinbtn:hover {
+.signinbtn:hover{
   color: #ffffff;
   background-color: #56b24d;
   transition: all 0.3s;
 }
 
-.signinbtn:active {
+.signinbtn:active,.reset:active {
   transition: all 0.1s;
   transform: translateY(2px);
 }
 
 .scroll-nav {
   height: 75px;
-  transition: 0.6s;
+  transition: 0.3s;
   background-color: #f4fff3;
   box-shadow: 0 3px 100px 1px hsla(0, 0%, 0%, 0.326);
 }
@@ -189,7 +189,9 @@ button {
 .modal-piechart,
 .modal-ingredients,
 .meal-recipe-modal-box,
-.meal-caution-modal-box {
+.meal-caution-modal-box,
+.options,
+.reset {
   box-shadow: 0 3px 10px -2px hsla(0, 0%, 0%, 0.326);
 }
 
@@ -197,15 +199,17 @@ button {
 .gen-meal-heading > div > h1,
 .gen-meal-heading > div > h4,
 .prep-box,
-.font {
+.all-meal-heading,
+.font,
+.options {
   font-family: "franklin";
 }
 
 .meal-modal-box {
   box-shadow: 0 10px 70px -2px hsla(0, 0%, 0%, 0.691);
   transition:
-  opacity 0.4s ease-in,
-  transform 0.2s ease-in;
+    opacity 0.4s ease-in,
+    transform 0.2s ease-in;
   opacity: 0;
   transform: translateY(-50px);
 }
@@ -219,17 +223,52 @@ button {
   box-shadow: 0 3px 30px 2px hsla(0, 0%, 0%, 0.326);
 }
 
-
-.loading-container{
+.loading-container {
   font-size: 30px;
   font-family: "franklin";
   text-align: center;
   font-weight: 900;
 }
 
-.loading-container>img{
+.loading-container > img {
   height: 250px;
   width: 250px;
   border-radius: 50%;
   /* border: #56b24d solid 3px; */
 }
+
+.searchbar::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  margin-right: 20px;
+  height: 12px;
+  width: 12px;
+  background: linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 43%,
+      #56B24E 45%,
+      #56B24E 55%,
+      rgba(0, 0, 0, 0) 57%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 43%,
+      #56B24E 45%,
+      #56B24E 55%,
+      transparent 57%,
+      transparent 100%
+    );
+  cursor: pointer;
+}
+
+.searchbar:focus,
+.options:focus {
+  outline: none;
+}
+
+.options {
+  font-size: 20px;
+}
+
