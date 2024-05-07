@@ -276,7 +276,7 @@ button {
 
 form input[type="password"],
 form input[type="text"],
-select {
+.religion-select {
   margin: 2px 0;
   font-family: "Open Sans", sans-serif;
   padding: 4px;

@@ -151,7 +151,7 @@ const Auth = () => {
                 {...register("religion", {
                   required: "Religion is required",
                 })}
-                className="form-input p-[7px]"
+                className="religion-select form-input p-[7px]"
               >
                 <option value="Hinduism">Hindu</option>
                 <option value="Islam">Muslim</option>

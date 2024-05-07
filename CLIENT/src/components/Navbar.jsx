@@ -86,13 +86,13 @@ const Navbar = () => {
           {cookies.userName && cookies.userName == "undefined" ? (
             <Link
               to="/signin"
-              className="px-8 py-1 text-[#56B24E] border-3 border-[#56B24E] rounded-3xl font-bold signinbtn hover:underline bg-white"
+              className="px-8 py-1 text-customGreen border-3 border-customGreen rounded-3xl font-bold signinbtn hover:underline bg-white"
             >
               Sign In
             </Link>
           ) : (
             <p
-              className="px-8 py-1 text-[#56B24E] border-3 border-[#56B24E] rounded-3xl font-bold signinbtn hover:underline bg-white"
+              className="px-8 py-1 text-customGreen border-3 border-customGreen rounded-3xl font-bold signinbtn hover:underline bg-white"
               onClick={handleLogout}
             >
               Log Out
