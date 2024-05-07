@@ -7,12 +7,13 @@ import About from "../routes/About";
 import Auth from "../routes/Auth";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Login from "../routes/Login";
 
 const Routing = () => {
   const location = useLocation();
 
   const shouldRenderNavbarAndFooter = () => {
-    const hiddenRoutes = ["/signin"];
+    const hiddenRoutes = ["/signin","/login"];
     const currentPath = location.pathname;
     return !hiddenRoutes.includes(currentPath);
   };
@@ -26,6 +27,7 @@ const Routing = () => {
         <Route path="/meals" element={<Meals />} />
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<Auth />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       {shouldRenderNavbarAndFooter() && <Footer />}
     </>

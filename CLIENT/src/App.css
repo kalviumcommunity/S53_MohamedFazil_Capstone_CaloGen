@@ -57,13 +57,14 @@ button {
   width: 100%;
 }
 
-.signinbtn:hover{
+.signinbtn:hover {
   color: #ffffff;
   background-color: #56b24d;
   transition: all 0.3s;
 }
 
-.signinbtn:active,.reset:active {
+.signinbtn:active,
+.reset:active {
   transition: all 0.1s;
   transform: translateY(2px);
 }
@@ -201,7 +202,8 @@ button {
 .prep-box,
 .all-meal-heading,
 .font,
-.options {
+.options,
+.auth-container {
   font-family: "franklin";
 }
 
@@ -246,8 +248,8 @@ button {
       45deg,
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0) 43%,
-      #56B24E 45%,
-      #56B24E 55%,
+      #56b24e 45%,
+      #56b24e 55%,
       rgba(0, 0, 0, 0) 57%,
       rgba(0, 0, 0, 0) 100%
     ),
@@ -255,8 +257,8 @@ button {
       135deg,
       transparent 0%,
       transparent 43%,
-      #56B24E 45%,
-      #56B24E 55%,
+      #56b24e 45%,
+      #56b24e 55%,
       transparent 57%,
       transparent 100%
     );
@@ -272,3 +274,40 @@ button {
   font-size: 20px;
 }
 
+form input[type="password"],
+form input[type="text"],
+select {
+  margin: 2px 0;
+  font-family: "Open Sans", sans-serif;
+  padding: 4px;
+  gap: 0.5rem;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  border: solid 2px #56b24e;
+  border-radius: 5px;
+  box-shadow: 0 1px 10px -3px hsla(0, 0%, 0%, 0.326);
+}
+form input[type="password"]:focus,
+form input[type="text"]:focus,
+select:focus {
+  outline: none;
+}
+
+input[type="submit"] {
+  margin: 1% auto;
+  font-size: 20px;
+}
+
+.label-flex,
+.button-flex {
+  width: 100%;
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.err{
+  color: #415c3b;
+}

@@ -92,7 +92,14 @@ const Generator = () => {
         </div>
         <div className="gen-formbox flex flex-col justify-start items-stretch m-3 bg-white rounded-[10px] p-2 w-[35%]">
           <div className="flex flex-col justify-center items-center">
-            <img src={Logo} alt="" className="p-2" />
+            <img
+              src={Logo}
+              alt=""
+              className="p-2"
+              style={{
+                width: "70px",
+              }}
+            />
             <h3 className="text-s text-[#0000006e]">
               Generate Meal with Calories
             </h3>

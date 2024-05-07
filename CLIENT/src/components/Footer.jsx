@@ -8,10 +8,9 @@ const Footer = () => {
         <img
           src={logo}
           alt=""
-          // style={{
-          //   width: "86.25px",
-          //   height: "70px",
-          // }}
+          style={{
+            width:"40px",
+          }}
         />
       </div>
       <h6 className="">
