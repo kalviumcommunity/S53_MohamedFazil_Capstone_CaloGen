@@ -8,74 +8,52 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
 
-const Auth = () => {
+const Login = () => {
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-
-  const [showPassword, setShowPassword] = useState(false);
   const [cookies, setCookie] = useCookies([
     "userToken",
     "userName",
     "userReligion",
   ]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const onSubmit = async (data) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const formSubmitHandler = async (data) => {
     try {
-      // Remove retypePassword from data
-      const { retypePassword, ...postData } = data;
-      console.log("postData: ", postData);
-
       const response = await axios.post(
-        `${import.meta.env.VITE_AUTH_SERVER_URL_}/signin`,
-        postData
+        `${import.meta.env.VITE_AUTH_SERVER_URL_}/login`,
+        data
       );
+      console.log("response: ", response.data);
 
-      setCookie("userToken", response.data.token);
-      setCookie("userName", response.data.user_name);
-      setCookie("userReligion", response.data.religion);
-
-      toast.success("Signed In!", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-      setTimeout(() => {
-        navigate("/gen");
-      }, 2000);
-    } catch (error) {
-      console.error("Error signing up:", error);
-
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message === "User already exists!"
-      ) {
-        // Prompt the user to change username
-        toast.error(
-          "Username already exists. Please choose a different username.",
-          {
+      // Check if password is correct
+      if (response.data.isPasswordValid) {
+        setCookie("userToken", response.data.token);
+        setCookie("userName", response.data.user_name);
+        setCookie("userReligion", response.data.religion);
+        setTimeout(() => {
+          toast.success("Logged In Successfully!", {
             position: "top-center",
-            autoClose: 2000,
+            autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
             theme: "dark",
-          }
-        );
+          });
+        }, 1000);
+        setTimeout(() => {
+          navigate("/gen");
+        }, 3000);
       } else {
-        toast.error("Error signing up. Please try again.", {
+        // Display error message if password is incorrect
+        toast.error("Incorrect password. Please try again.", {
           position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
@@ -85,7 +63,22 @@ const Auth = () => {
           progress: undefined,
           theme: "dark",
         });
+        console.log("passwordValid: ", response.data.isPasswordValid);
       }
+    } catch (error) {
+      console.error("Error logging in:", error);
+
+      // Display error message
+      toast.error("Error logging in. Please try again.", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
 
@@ -107,29 +100,14 @@ const Auth = () => {
             }}
           />
           <h1 className="pb-2 border-b-2 w-full text-center text-xl">
-            CREATE <span className="text-[#56B24E]">ACCOUNT</span>
+            LOG <span className="text-[#56B24E]">IN</span>
           </h1>
           <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(formSubmitHandler)}
             className="signup-form flex flex-col justify-center gap-2 w-full p-2"
           >
             <label className="form-label">
-              Enter Your Name
-              <input
-                type="text"
-                {...register("name", {
-                  required: "Name is required",
-                  minLength: {
-                    value: 3,
-                    message: "Username must be at least 3 characters",
-                  },
-                })}
-                className="form-input"
-              />
-              {errors.name && <p className="err">{errors.name.message}</p>}
-            </label>
-            <label className="form-label">
-              Create Username
+              Username
               <input
                 type="text"
                 {...register("user_name", {
@@ -146,28 +124,7 @@ const Auth = () => {
               )}
             </label>
             <label className="form-label">
-              Select a Religion
-              <select
-                {...register("religion", {
-                  required: "Religion is required",
-                })}
-                className="form-input p-[7px]"
-              >
-                <option value="Hinduism">Hindu</option>
-                <option value="Islam">Muslim</option>
-                <option value="Christianity">Christian</option>
-                <option value="Jainism">Jain</option>
-                <option value="Buddhism">Buddhist</option>
-                <option value="Sikhism">Sikh</option>
-                <option value="None">Prefer Not to Say</option>
-              </select>
-              {errors.religion && (
-                <p className="err">{errors.religion.message}</p>
-              )}
-            </label>
-
-            <label className="form-label">
-              Create Password
+              Password
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", {
@@ -183,21 +140,6 @@ const Auth = () => {
                 <p className="err">{errors.password.message}</p>
               )}
             </label>
-            <label className="form-label">
-              Retype Password
-              <input
-                type={showPassword ? "text" : "password"}
-                {...register("retypePassword", {
-                  required: "Please retype your password",
-                  validate: (value) =>
-                    value === watch("password") || "Passwords do not match",
-                })}
-                className="form-input"
-              />
-              {errors.retypePassword && (
-                <p className="err">{errors.retypePassword.message}</p>
-              )}
-            </label>
             <label className="label-flex gap-2">
               <h2>Show Password</h2>
               <input type="checkbox" onClick={togglePasswordVisibility} />
@@ -206,15 +148,15 @@ const Auth = () => {
             <div className="button-flex ">
               <input
                 type="submit"
-                value="SIGN UP"
+                value="LOG IN"
                 className="signup-btn px-8 py-1 text-[#56B24E] border-3 border-[#56B24E] rounded-3xl font-bold signinbtn hover:underline bg-white"
               />
             </div>
             <Link
-              to="/login"
+              to="/signin"
               className="text-center hover:underline hover:text-customGreen"
             >
-              Already have an account?
+              Don't have an account?
             </Link>
           </form>
         </div>
@@ -223,4 +165,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default Login;

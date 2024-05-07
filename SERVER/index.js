@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const connectDB = require("./Config/connectDB");
 const cors = require("cors");
 const mealRouter = require("./Routers/mealRouters");
+const authRouter = require("./Routers/authRouters");
 
 const PORT = process.env.PORT;
 
@@ -19,6 +20,7 @@ app.use(
 app.use(express.json());
 connectDB();
 app.use("/meals", mealRouter);
+app.use("/auth", authRouter);
 
 app.get("/", async (req, res) => {
   try {
