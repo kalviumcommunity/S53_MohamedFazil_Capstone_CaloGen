@@ -21,7 +21,7 @@ const signIn = async (req, res) => {
       return res.status(400).json({ details: error.details });
     }
     const newUser = await userModel.create(value);
-    // const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY);
+    const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY);
     res.status(201).json({
       user_name: newUser.user_name,
       token,
@@ -61,7 +61,7 @@ const logIn = async (req, res) => {
       return res.json({ message: "Username or Password is incorrect!" });
     }
 
-    // const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
     
     res.status(200).json({
       user_name,
