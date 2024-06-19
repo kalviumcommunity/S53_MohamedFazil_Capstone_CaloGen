@@ -22,6 +22,24 @@ connectDB();
 app.use("/meals", mealRouter);
 app.use("/auth", authRouter);
 
+const timeout = require("connect-timeout");
+app.use(timeout("15s"));
+
+// Your route definitions
+app.get("/your-route", async (req, res) => {
+  try {
+    // Your route logic
+  } catch (error) {
+    res.status(500).json({ message: "Error occurred", error: error.message });
+  }
+});
+
+// Error handler for timeout
+app.use((req, res, next) => {
+  if (!req.timedout) next();
+  else res.status(500).json({ message: "Request timeout" });
+});
+
 app.get("/", async (req, res) => {
   try {
     // Check if the mongoose connection is ready

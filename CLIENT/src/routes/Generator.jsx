@@ -6,16 +6,16 @@ import { Pie } from "react-chartjs-2";
 import axios from "axios";
 
 const Generator = () => {
-  const { register, handleSubmit } = useForm();
-
+  const { register, handleSubmit, getValues } = useForm();
   const [totalCalories, setTotalCalories] = useState(0);
   const [mealNum, setMealNum] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalAnimation, setModalAnimation] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [mealGrid, setMealGrid] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [totalCalFetch, setTotalCalFetch] = useState(0);
   const [pieChart, setPieChart] = useState({
     datasets: [
       {
@@ -26,12 +26,44 @@ const Generator = () => {
     labels: [],
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const { calories, numberOfMeals } = data;
     const total = parseInt(calories);
     const noMeals = parseInt(numberOfMeals);
+
+    // Validate based on conditions
+    if ((noMeals === 1 && total > 500) || (noMeals === 2 && total > 1000)) {
+      alert(
+        `This combination is not possible: Calories ${total} and Meals ${noMeals}`
+      );
+      return;
+    }
+
     setTotalCalories(total);
     setMealNum(noMeals);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL_}/generate-meals`,
+        {
+          calories: total,
+          numberOfMeals: noMeals,
+        }
+      );
+      setMealGrid(response.data);
+    } catch (error) {
+      console.log("error: ", error);
+      setError(error.response?.data?.message || "An error occurred");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRegenerate = async () => {
+    const data = getValues();
+    await onSubmit(data);
   };
 
   const handleViewModal = (meal) => {
@@ -60,30 +92,17 @@ const Generator = () => {
     document.body.style.overflow = "unset";
   };
 
+  const calorieCountAdd = () => {
+    let totalCalFetch = 0;
+    for (let i = 0; i < mealGrid.length; i++) {
+      totalCalFetch += mealGrid[i].calories;
+    }
+    setTotalCalFetch(totalCalFetch);
+  };
+
   useEffect(() => {
-    const abortController = new AbortController(); // Step 2
-
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL_}`, {
-          signal: abortController.signal, // Step 4
-        });
-        setMealGrid(response.data);
-      } catch (error) {
-        console.log("error: ", error);
-        setError("Failed to fetch data. Please try again later.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      abortController.abort(); // Step 5
-    };
-  }, []);
-
+    calorieCountAdd();
+  }, [mealGrid]);
   return (
     <div className="generator-main-div w-full flex flex-col justify-center items-center my-3">
       <div className="generator-container flex justify-between items-center w-3/4 bg-[#56B24E] rounded-[10px] p-3">
@@ -142,19 +161,31 @@ const Generator = () => {
           </form>
         </div>
       </div>
-      <div className="gen-meal-heading flex justify-between items-center m-[5%] w-[90%]">
-        <div>
-          <h1 className="text-5xl">GENERATED RESULT</h1>
-          <h4 className="m-[1%] ">TOTAL CALORIES: {totalCalories}</h4>
+      {isLoading ? (
+        <div className="gen-meal-heading flex justify-between items-center m-[5%] w-[90%]">
+          <div>
+            <h1 className="text-5xl">GENERATED RESULT</h1>
+            <h4 className="m-[1%] ">TOTAL CALORIES: {totalCalFetch}</h4>
+          </div>
+          <button
+            onClick={handleRegenerate}
+            className="m-1 p-2 bg-[#56B24E] text-white rounded-[13px] w-[150px] tracking-[1px]"
+          >
+            REGENERATE
+          </button>
         </div>
-        <button className="m-1 p-2 bg-[#56B24E] text-white rounded-[13px] w-[150px] tracking-[1px]">
-          REGENERATE
-        </button>
-      </div>
-      <div className="flex items-center justify-center w-full">
+      ) : (
+        <div className="error-message text-center w-full py-[150px]">
+          <p className="font-bold text-4xl text-[#56B24E] underline">
+            Please Enter Your Desired Inputs Above ☝️
+          </p>
+        </div>
+      )}
+
+      <div className="flex flex-col items-center justify-center w-full">
         {error && (
-          <div className="error-message">
-            <p>{error}</p>
+          <div className="error-message text-center w-full p-[100px]">
+            <p className="font-bold text-xl underline">{error}</p>
           </div>
         )}
         {isLoading ? (
@@ -168,7 +199,7 @@ const Generator = () => {
         ) : (
           <div
             className="generator-meal-grid grid w-[95%] mt-[-2%] mb-[2%]"
-            style={{ gridTemplateColumns: `repeat(${mealNum}  , 1fr)` }}
+            style={{ gridTemplateColumns: `repeat(${mealNum}, 1fr)` }}
           >
             {mealGrid &&
               mealGrid.map((meal, i) => {
@@ -188,6 +219,12 @@ const Generator = () => {
                     <p className="text-xl font-medium tracking-[1px] mb-[8px] text-center">
                       {meal.mealName}
                     </p>
+                    <div className="w-[80%]">
+                      <div className="flex justify-between items-center text-base font-medium tracking-[1px] text-center underline">
+                        <h4>Calories</h4>
+                        <h3>{meal.calories}</h3>
+                      </div>
+                    </div>
                     <div className="nutrients flex flex-col justify-center items-center w-[80%]">
                       {meal.nutrients.slice(0, 3).map((nutr, j) => {
                         return (
@@ -213,7 +250,6 @@ const Generator = () => {
           </div>
         )}
       </div>
-
       {isModalOpen && selectedMeal && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 flex justify-center items-center z-[2]">
           <div
