@@ -103,6 +103,7 @@ const Generator = () => {
   useEffect(() => {
     calorieCountAdd();
   }, [mealGrid]);
+
   return (
     <div className="generator-main-div w-full flex flex-col justify-center items-center my-3">
       <div className="generator-container flex justify-between items-center w-3/4 bg-[#56B24E] rounded-[10px] p-3">
@@ -161,7 +162,8 @@ const Generator = () => {
           </form>
         </div>
       </div>
-      {isLoading ? (
+
+      {mealGrid.length > 0 && !isLoading && (
         <div className="gen-meal-heading flex justify-between items-center m-[5%] w-[90%]">
           <div>
             <h1 className="text-5xl">GENERATED RESULT</h1>
@@ -174,12 +176,6 @@ const Generator = () => {
             REGENERATE
           </button>
         </div>
-      ) : (
-        <div className="error-message text-center w-full py-[150px]">
-          <p className="font-bold text-4xl text-[#56B24E] underline">
-            Please Enter Your Desired Inputs Above ☝️
-          </p>
-        </div>
       )}
 
       <div className="flex flex-col items-center justify-center w-full">
@@ -189,12 +185,18 @@ const Generator = () => {
           </div>
         )}
         {isLoading ? (
-          <div className="loading-container mb-[2%]">
+          <div className="loading-container my-[6%]">
             <img
               src="https://i.pinimg.com/originals/e6/13/21/e613212546d6c27600379a26cd601365.gif"
               alt=""
             />
             <p>Loading Meals...</p>
+          </div>
+        ) : mealGrid.length === 0 && !error ? (
+          <div className="error-message text-center w-full py-[150px]">
+            <p className="font-bold text-4xl text-[#56B24E] underline">
+              Please Enter Your Desired Inputs Above ☝️
+            </p>
           </div>
         ) : (
           <div
@@ -250,6 +252,7 @@ const Generator = () => {
           </div>
         )}
       </div>
+
       {isModalOpen && selectedMeal && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 flex justify-center items-center z-[2]">
           <div
