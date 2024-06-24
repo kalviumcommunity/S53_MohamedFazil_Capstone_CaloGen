@@ -4,6 +4,7 @@ import Logo from "../assets/logo.png";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
+import upArrow from "../assets/arrow-up.png";
 
 const Generator = () => {
   const { register, handleSubmit, getValues } = useForm();
@@ -193,10 +194,13 @@ const Generator = () => {
             <p>Loading Meals...</p>
           </div>
         ) : mealGrid.length === 0 && !error ? (
-          <div className="error-message text-center w-full py-[150px]">
-            <p className="font-bold text-4xl text-[#56B24E] underline">
-              Please Enter Your Desired Inputs Above ☝️
-            </p>
+          <div className="error-message text-center w-full py-[150px] flex justify-center">
+            <div className="flex justify-between items-center w-[50%]">
+              <p className="font-bold text-4xl text-[#56B24E]">
+                Please Enter Your Desired Inputs Above
+              </p>
+              <img src={upArrow} alt="" className="w-10 h-12" />
+            </div>
           </div>
         ) : (
           <div
@@ -213,7 +217,7 @@ const Generator = () => {
                     <img
                       src={meal.img}
                       alt=""
-                      className="w-[230px] h-[180px] rounded-[20px]"
+                      className="w-[300px] h-[200px] rounded-[20px] shadow-xl"
                     />
                     <h1 className="text-base font-medium tracking-[1px] m-[6px] text-gray-500 underline">
                       {meal.course}
@@ -222,12 +226,12 @@ const Generator = () => {
                       {meal.mealName}
                     </p>
                     <div className="w-[80%]">
-                      <div className="flex justify-between items-center text-base font-medium tracking-[1px] text-center underline">
-                        <h4>Calories</h4>
+                      <div className="flex justify-between items-center text-base font-medium tracking-[1px] text-center border-b-2 py-3">
+                        <h4>CALORIES</h4>
                         <h3>{meal.calories}</h3>
                       </div>
                     </div>
-                    <div className="nutrients flex flex-col justify-center items-center w-[80%]">
+                    <div className="nutrients flex flex-col justify-center items-center w-[80%] py-2">
                       {meal.nutrients.slice(0, 3).map((nutr, j) => {
                         return (
                           <div
